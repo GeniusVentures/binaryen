@@ -180,12 +180,6 @@ struct ProgramResult {
     timer.start();
     // do this using just core stdio.h and stdlib.h, for portability
     // sadly this requires two invokes
-    +
-+        code = system(("timeout " + std::to_string(timeout) + "s " + command + " > /dev/null 2> /dev/null").c_str());
-+      #endif
-+    #else
-+      code = system(("timeout " + std::to_string(timeout) + "s " + command + " > /dev/null 2> /dev/null").c_str());
-+    #endif
 
     #if __APPLE__
       #include <TargetConditionals.h>
@@ -199,7 +193,7 @@ struct ProgramResult {
                 " > /dev/null 2> /dev/null")
                 .c_str());
     #endif
-    
+
     const int MAX_BUFFER = 1024;
     char buffer[MAX_BUFFER];
     FILE* stream = popen(
